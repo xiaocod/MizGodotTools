@@ -1,31 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://2w4vawr17lfj"]
+[gd_scene load_steps=2 format=3 uid="uid://2w4vawr17lfj"]
 
 [ext_resource type="Script" uid="uid://bn2e7j43dthrv" path="res://effects/drop_shadows/global_shadow_manager.gd" id="1_c2ohp"]
-
-[sub_resource type="GDScript" id="GDScript_unm3u"]
-script/source = "extends Node2D
-
-@onready var shadow_offset_dir = Vector2.RIGHT.rotated(deg_to_rad(DropShadow.shadow_direction))
-
-var segmented_lines_to_draw = []
-func draw_segmented_line(points, width, offset):
-	segmented_lines_to_draw.append({\"points\": points, \"width\": width, \"offset\": offset})
-	queue_redraw()
-
-func _draw():
-	for line_data in segmented_lines_to_draw:
-		var points = line_data.points
-		var width = line_data.width
-		var offset = line_data.offset
-		var last_p = Vector2.INF
-		for point in points:
-			point = to_local(point + shadow_offset_dir*offset)
-			if last_p != Vector2.INF:
-				draw_line(point, last_p, Color.BLACK, width)
-			draw_circle(point, width/2.0, Color.BLACK)
-			last_p = point
-	segmented_lines_to_draw = []
-"
 
 [node name="GlobalDropShadowManager" type="Node2D" groups=["global_drop_shadow_manager"]]
 z_index = 5
@@ -33,6 +8,3 @@ script = ExtResource("1_c2ohp")
 shadow_color = Color(0, 0, 0, 0.356863)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-
-[node name="SegmentedLineDrawer" type="Node2D" parent="CanvasGroup"]
-script = SubResource("GDScript_unm3u")

@@ -10,7 +10,8 @@ const GLOBAL_SHADOW_MANAGER = preload("res://effects/drop_shadows/global_shadow_
 @export var is_global = true # uncheck if this is for casting on another shadow casting object
 @export var custom_z_index_difference = -1 # if is_global is false, this determines the z index difference from the parent node
 
-# uncheck if you want to choose exactly when the shadow is created
+## set false if you want to choose exactly when the shadow is created
+## if using Pseudo3DObjectWithCustomLayers this should be set to false
 @export var create_on_ready = true 
 
 @export var offset_amnt = 25 # distance the shadow is cast
@@ -19,12 +20,12 @@ const shadow_direction = 30 # direction the shadow is cast in degrees
 @onready var shadow_offset = Vector2.RIGHT.rotated(deg_to_rad(shadow_direction))*offset_amnt
 
 var shadow_node : Node2D 
+var delete_on_tree_exit = true
 
 func _ready():
 	if !is_instance_valid(global_drop_shadow_manager):
 		global_drop_shadow_manager = GLOBAL_SHADOW_MANAGER.instantiate()
 		get_tree().get_root().add_child.bind(global_drop_shadow_manager).call_deferred()
-	
 	if create_on_ready:
 		create_shadow()
 
@@ -89,11 +90,15 @@ func create_shadow():
 func _process(_delta):
 	update_transform()
 
+@export var verbose = false
+
 func update_visibility():
 	if is_instance_valid(shadow_node):
 		shadow_node.visible = is_visible_in_tree()
 
 func on_tree_exit():
+	if !delete_on_tree_exit:
+		return
 	if is_instance_valid(shadow_node):
 		shadow_node.queue_free()
 		set_process(false)
