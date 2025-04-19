@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bqy24ly3o1xhx" path="res://effects/textures/blob_sprite_sheet.png" id="1_6xxyx"]
 [ext_resource type="Texture2D" uid="uid://0jm4skwtv1vm" path="res://effects/textures/circle_16.png" id="2_xnyd0"]
-[ext_resource type="Script" uid="uid://c4iv4wsrr6jwy" path="res://utility/play_random_sound.gd" id="3_fwa1w"]
+[ext_resource type="Script" uid="uid://c4iv4wsrr6jwy" path="res://sfx_utility/play_random_sound.gd" id="3_fwa1w"]
 [ext_resource type="AudioStream" uid="uid://btewhq2y2qb5c" path="res://effects/bullet_hit_effect/sfx/pc_bullet_impact_wall_01.wav" id="4_w8hmv"]
 [ext_resource type="AudioStream" uid="uid://ccs7ujm7gpqo1" path="res://effects/bullet_hit_effect/sfx/pc_bullet_impact_wall_02.wav" id="5_x2sr0"]
 [ext_resource type="AudioStream" uid="uid://cpr04qbwei5c8" path="res://effects/bullet_hit_effect/sfx/pc_bullet_impact_wall_03.wav" id="6_acot4"]
@@ -45,7 +45,8 @@ scale_max = 0.3
 color = Color(0.980392, 0.917647, 0.670588, 1)
 
 [node name="BulletHitEffect" type="Node2D" groups=["instanced"]]
-editor_description = "uses a separate canvas layer so it doesnt appear below walls"
+z_index = 5
+z_as_relative = false
 
 [node name="DeleteTimer" type="Timer" parent="."]
 wait_time = 4.0

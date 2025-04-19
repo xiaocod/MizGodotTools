@@ -42,9 +42,9 @@ func randomize_blood_splatter():
 	sprite_2d.frame = randi_range(0, sprite_sheet_frame_count-1)
 	if !is_static:
 		sprite_2d.rotation = randf_range(0.0, TAU)
+		sprite_2d.scale = Vector2.ONE*randf_range(min_blood_scale, max_blood_scale)
 	base_color = blood_dark_color.lerp(blood_light_color, randf_range(0.0, 1.0))
 	modulate = base_color
-	sprite_2d.scale = Vector2.ONE*randf_range(min_blood_scale, max_blood_scale)
 
 func fling_blood(start_pos: Vector2, end_pos: Vector2, play_splatter_sound=false):
 	if is_static:

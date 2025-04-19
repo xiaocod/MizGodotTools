@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dqr4t55rkg2pg"
-path="res://.godot/imported/splash4.wav-7da1642d8ecb557560e36fa7d9886dd3.sample"
+path="res://.godot/imported/splash4.wav-5a212264107301a258c8e2d50ce694cb.sample"
 
 [deps]
 
-source_file="res://effects/blood_splatter/sfx/splash4.wav"
-dest_files=["res://.godot/imported/splash4.wav-7da1642d8ecb557560e36fa7d9886dd3.sample"]
+source_file="res://effects/blood_effects/sfx/splash4.wav"
+dest_files=["res://.godot/imported/splash4.wav-5a212264107301a258c8e2d50ce694cb.sample"]
 
 [params]
 

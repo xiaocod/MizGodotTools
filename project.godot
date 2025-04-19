@@ -23,3 +23,9 @@ window/size/viewport_height=1200
 
 instanced="anything that needs to be deleted on scene change"
 serializable="anything that can be saved and loaded"
+
+[layer_names]
+
+2d_physics/layer_1="environment"
+2d_physics/layer_2="characters"
+2d_physics/layer_3="hitboxes"

@@ -1,10 +1,9 @@
 class_name BloodSpawner extends Node2D
 
-## This node spawns blood clouds and flings splatters
-## controlled from HealthManager class
+## Spawns blood clouds and flings splatters
 
-const BLOOD_SPLATTER = preload("res://effects/blood_splatter/blood_splatter.tscn")
-const BLOOD_CLOUD = preload("res://effects/blood_splatter/blood_cloud.tscn")
+const BLOOD_SPLATTER = preload("res://effects/blood_effects/blood_splatter.tscn")
+const BLOOD_CLOUD = preload("res://effects/blood_effects/blood_cloud.tscn")
 
 @export var max_splatter_dist = 130.0
 @export var blood_wall_offset = 15.0
@@ -17,15 +16,34 @@ const BLOOD_CLOUD = preload("res://effects/blood_splatter/blood_cloud.tscn")
 @onready var ray_cast_2d = $RayCast2D
 
 
-func splatter_blood(dir = Vector2.DOWN):
+func spawn_blood_from_damage_data(damage_data: DamageData):
+	if !damage_data.spawn_blood:
+		return
+	
+	global_position = damage_data.damage_position
+	# average hit normal and damage direction
+	var dir = damage_data.hit_normal - damage_data.damage_direction 
+	
+	# spray blood in both directions
+	splatter_blood(dir / 2.0, damage_data.play_sound)
+	splatter_extra_blood(-dir / 2.0, damage_data.play_sound)
+	if damage_data.spawn_extra_blood:
+		splatter_extra_blood(damage_data.hit_normal, damage_data.play_sound)
+	
+	if damage_data.spawn_blood_cloud:
+		spawn_blood_cloud()
+	if damage_data.play_sound:
+		$ImpactSounds.play()
+
+func splatter_blood(dir = Vector2.DOWN, play_sound=true):
 	var splatter_count = randi_range(min_splatter_count, max_splatter_count)
 	for i in splatter_count:
-		spawn_blood(get_splatter_offset(dir), i%3==0)
+		spawn_blood(get_splatter_offset(dir), i%3==0 and play_sound)
 
-func splatter_extra_blood(dir = Vector2.DOWN):
+func splatter_extra_blood(dir = Vector2.DOWN, play_sound=true):
 	var splatter_count = randi_range(min_splatter_count, max_splatter_count) * 2
 	for i in splatter_count:
-		spawn_blood(get_splatter_offset(dir) * 1.5, i%3==0)
+		spawn_blood(get_splatter_offset(dir) * 1.5, i%3==0 and play_sound)
 
 func get_splatter_offset(dir = Vector2.DOWN):
 	var splatter_dir = dir.rotated(deg_to_rad(randf_range(-blood_spray_arc, blood_spray_arc)/2.0))

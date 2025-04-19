@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://glvxl7coltw8"]
+
+[ext_resource type="Texture2D" uid="uid://c485t74cvfska" path="res://effects/textures/white_circle.png" id="1_gtwjl"]
+[ext_resource type="PackedScene" uid="uid://bvcafpqx7h01d" path="res://characters_utility/hit_box/hit_box.tscn" id="2_s0ftr"]
+[ext_resource type="PackedScene" uid="uid://c5sy7c8ijp8k6" path="res://characters_utility/health_manager/health_manager.tscn" id="3_ieret"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0ftr"]
+radius = 31.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ieret"]
+radius = 31.0644
+
+[node name="TestDummy" type="CharacterBody2D"]
+z_index = 10
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gtwjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s0ftr")
+
+[node name="HealthManager" parent="." instance=ExtResource("3_ieret")]
+max_health = 10
+
+[node name="HitBox" parent="." instance=ExtResource("2_s0ftr")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_ieret")
+
+[connection signal="died" from="HealthManager" to="." method="queue_free"]
+[connection signal="hitbox_hurt" from="HitBox" to="HealthManager" method="hurt"]
+
+[editable path="HitBox"]
