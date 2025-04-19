@@ -18,3 +18,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1600
 window/size/viewport_height=1200
+
+[global_group]
+
+instanced="anything that needs to be deleted on scene change"
+serializable="anything that can be saved and loaded"

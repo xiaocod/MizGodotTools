@@ -4,10 +4,25 @@
 [ext_resource type="Script" uid="uid://dsyjfyhywp7rq" path="res://effects/pseudo_3d/pseudo_3d_object.gd" id="2_17vpi"]
 [ext_resource type="Texture2D" uid="uid://c485t74cvfska" path="res://effects/textures/white_circle.png" id="3_cwl6o"]
 [ext_resource type="Texture2D" uid="uid://dmae8vc88qp25" path="res://effects/textures/round_walls.png" id="4_u48m2"]
-[ext_resource type="PackedScene" uid="uid://dq7cs1jh2onwu" path="res://examples/pseudo_3d_objects_example/pseudo_3d_table.tscn" id="5_s4lu1"]
+[ext_resource type="PackedScene" uid="uid://dq7cs1jh2onwu" path="res://example_scenes/pseudo_3d_objects_examples/pseudo_3d_table.tscn" id="5_s4lu1"]
 [ext_resource type="Texture2D" uid="uid://0jm4skwtv1vm" path="res://effects/textures/circle_16.png" id="6_17vpi"]
 [ext_resource type="PackedScene" uid="uid://bjkxb686j15uw" path="res://effects/drop_shadows/drop_shadow.tscn" id="7_cwl6o"]
-[ext_resource type="PackedScene" uid="uid://5t2rxe02mskq" path="res://examples/pseudo_3d_objects_example/pseudo_3d_couch.tscn" id="8_u48m2"]
+[ext_resource type="PackedScene" uid="uid://5t2rxe02mskq" path="res://example_scenes/pseudo_3d_objects_examples/pseudo_3d_couch.tscn" id="8_u48m2"]
+
+[sub_resource type="Animation" id="Animation_gm0ej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_c3cl2"]
 resource_name = "move"
@@ -24,21 +39,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(105, -314)]
-}
-
-[sub_resource type="Animation" id="Animation_gm0ej"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ag1xi"]
