@@ -10,8 +10,10 @@ enum DIRECTIONS {RIGHT, DOWN, LEFT, UP}
 @export var front_direction = DIRECTIONS.RIGHT #which way does this character face by default
 
 @export var debug_view = false
+var did_los_check = false # used for debug view
 
 func can_see_point(point: Vector2):
+	did_los_check = false
 	queue_redraw()
 	
 	if point_outside_max_sight_range(point):
@@ -55,11 +57,13 @@ func point_outside_max_sight_range(point: Vector2):
 	return dist_to_point > cant_see_past_dist * cant_see_past_dist
 
 func has_los_to_point(point: Vector2):
+	did_los_check = true
 	ray_cast_2d.enabled = true
 	ray_cast_2d.target_position = ray_cast_2d.to_local(point)
 	ray_cast_2d.force_raycast_update()
 	var has_los = !ray_cast_2d.is_colliding()
-	ray_cast_2d.enabled = false
+	if !debug_view: # have to leave enabled to get collision point in debug
+		ray_cast_2d.enabled = false
 	return has_los
 
 func _draw():
@@ -72,3 +76,9 @@ func _draw():
 	draw_line(Vector2.ZERO, fwd.rotated( half_arc)*cant_see_past_dist, Color.YELLOW)
 	draw_line(Vector2.ZERO, fwd.rotated(-half_arc)*cant_see_past_dist, Color.YELLOW)
 	draw_arc(Vector2.ZERO, cant_see_past_dist, fwd.angle() + half_arc, fwd.angle() - half_arc, 10, Color.YELLOW, 1)
+	
+	var end_pos = ray_cast_2d.to_global(ray_cast_2d.target_position)
+	if ray_cast_2d.is_colliding():
+		end_pos = ray_cast_2d.get_collision_point()
+	if did_los_check:
+		draw_line(Vector2.ZERO, to_local(end_pos), Color.LIGHT_BLUE, 1)
