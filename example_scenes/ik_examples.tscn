@@ -204,17 +204,17 @@ position = Vector2(973, 461)
 [node name="Creature" type="Node2D" parent="ProcAnimStepperExample"]
 
 [node name="IkFootTargetManagerRight" parent="ProcAnimStepperExample/Creature" node_paths=PackedStringArray("other_step_manager", "wall_check_raycaster") instance=ExtResource("4_6stno")]
-position = Vector2(87.5147, 39.5561)
+position = Vector2(96.3717, 39.8606)
 rotation = 0.0343633
-scale = Vector2(1.13341, 1.58905)
+scale = Vector2(0.856464, 1.58905)
 other_step_manager = NodePath("../IkFootTargetManagerLeft")
 wall_check_raycaster = NodePath("../WallRayCast2D")
 post_step_delay = 0.1
 
 [node name="IkFootTargetManagerLeft" parent="ProcAnimStepperExample/Creature" node_paths=PackedStringArray("other_step_manager", "wall_check_raycaster") instance=ExtResource("4_6stno")]
-position = Vector2(-88.395, 47.3133)
+position = Vector2(-97.4517, 48.0201)
 rotation = -0.0778897
-scale = Vector2(1.0892, 1.46493)
+scale = Vector2(0.80532, 1.46493)
 other_step_manager = NodePath("../IkFootTargetManagerRight")
 wall_check_raycaster = NodePath("../WallRayCast2D")
 post_step_delay = 0.1
@@ -230,7 +230,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="LegLeft" type="Node2D" parent="ProcAnimStepperExample/Creature" node_paths=PackedStringArray("target_node")]
 position = Vector2(-39, 9)
-rotation = -2.86104
+rotation = -2.87419
 script = ExtResource("1_8q7bw")
 target_node = NodePath("../IkFootTargetManagerLeft/FootTargetMarker")
 update_ik_in_editor = true
@@ -242,7 +242,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="MiddleJoint" type="Node2D" parent="ProcAnimStepperExample/Creature/LegLeft"]
 position = Vector2(56, 0)
-rotation = -1.93321
+rotation = -1.75585
 
 [node name="Sprite2D" type="Sprite2D" parent="ProcAnimStepperExample/Creature/LegLeft/MiddleJoint"]
 position = Vector2(27, 1.78814e-07)
@@ -251,7 +251,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="EndJoint" type="Node2D" parent="ProcAnimStepperExample/Creature/LegLeft/MiddleJoint"]
 position = Vector2(54, 0)
-rotation = 1.57476
+rotation = 1.41055
 
 [node name="Sprite2D" type="Sprite2D" parent="ProcAnimStepperExample/Creature/LegLeft/MiddleJoint/EndJoint"]
 position = Vector2(9, 0)
@@ -260,7 +260,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="LegRight" type="Node2D" parent="ProcAnimStepperExample/Creature" node_paths=PackedStringArray("target_node")]
 position = Vector2(41, 6)
-rotation = -0.367847
+rotation = -0.366187
 script = ExtResource("1_8q7bw")
 target_node = NodePath("../IkFootTargetManagerRight/FootTargetMarker")
 middle_joint_flipped = false
@@ -273,7 +273,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="MiddleJoint" type="Node2D" parent="ProcAnimStepperExample/Creature/LegRight"]
 position = Vector2(56, 0)
-rotation = 2.04513
+rotation = 1.87983
 
 [node name="Sprite2D" type="Sprite2D" parent="ProcAnimStepperExample/Creature/LegRight/MiddleJoint"]
 position = Vector2(27, 1.78814e-07)
@@ -282,7 +282,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="EndJoint" type="Node2D" parent="ProcAnimStepperExample/Creature/LegRight/MiddleJoint"]
 position = Vector2(54, 0)
-rotation = -1.64291
+rotation = -1.47928
 
 [node name="Sprite2D" type="Sprite2D" parent="ProcAnimStepperExample/Creature/LegRight/MiddleJoint/EndJoint"]
 position = Vector2(9, 0)
@@ -305,6 +305,13 @@ shape = SubResource("RectangleShape2D_6stno")
 
 [node name="Sprite2D" type="Sprite2D" parent="ProcAnimStepperExample/StaticBody2D"]
 texture = ExtResource("1_7us5p")
+
+[node name="Label" type="Label" parent="ProcAnimStepperExample"]
+offset_left = -36.0
+offset_top = -218.0
+offset_right = 206.0
+offset_bottom = -195.0
+text = "Procedurally Animated Stepper"
 
 [editable path="ProcAnimStepperExample/Creature/IkFootTargetManagerRight"]
 [editable path="ProcAnimStepperExample/Creature/IkFootTargetManagerLeft"]
