@@ -5,6 +5,33 @@
 [ext_resource type="Texture2D" uid="uid://0jm4skwtv1vm" path="res://effects/textures/circle_16.png" id="3_5hj82"]
 [ext_resource type="PackedScene" uid="uid://dfqg6528a24pv" path="res://characters_utility/procedurally_animated_stepper/procedurally_animated_stepper.tscn" id="4_6stno"]
 
+[sub_resource type="Animation" id="Animation_5hj82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(66, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTarget:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.119858]
+}
+
 [sub_resource type="Animation" id="Animation_8q7bw"]
 resource_name = "move"
 length = 5.0
@@ -35,37 +62,37 @@ tracks/1/keys = {
 "values": [0.119858, -1.13508, 0.0, -0.695183]
 }
 
-[sub_resource type="Animation" id="Animation_5hj82"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hj82"]
+_data = {
+&"RESET": SubResource("Animation_5hj82"),
+&"move": SubResource("Animation_8q7bw")
+}
+
+[sub_resource type="Animation" id="Animation_6fpcb"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("IKTarget:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(66, -24)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("IKTarget:rotation")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.119858]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hj82"]
-_data = {
-&"RESET": SubResource("Animation_5hj82"),
-&"move": SubResource("Animation_8q7bw")
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_6stno"]
@@ -98,33 +125,6 @@ tracks/1/keys = {
 "values": [0.0, 0.0, -1.54642, -1.54642, -3.09255, -3.49172, -4.65568, -6.28319]
 }
 
-[sub_resource type="Animation" id="Animation_6fpcb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6fpcb"]
 _data = {
 &"RESET": SubResource("Animation_6fpcb"),
@@ -140,7 +140,7 @@ size = Vector2(64, 64)
 position = Vector2(232, 287)
 
 [node name="TwoJointIK" type="Node2D" parent="BaseIKExample" node_paths=PackedStringArray("target_node")]
-rotation = 0.296469
+rotation = 0.507833
 script = ExtResource("1_8q7bw")
 target_node = NodePath("../IKTarget")
 update_ik_in_editor = true
@@ -152,7 +152,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="MiddleJoint" type="Node2D" parent="BaseIKExample/TwoJointIK"]
 position = Vector2(56, 0)
-rotation = -1.00806
+rotation = -1.75706
 
 [node name="Sprite2D" type="Sprite2D" parent="BaseIKExample/TwoJointIK/MiddleJoint"]
 position = Vector2(27, 1.78814e-07)
@@ -161,7 +161,7 @@ texture = ExtResource("1_7us5p")
 
 [node name="EndJoint" type="Node2D" parent="BaseIKExample/TwoJointIK/MiddleJoint"]
 position = Vector2(54, 0)
-rotation = 0.658392
+rotation = 1.36908
 
 [node name="Sprite2D" type="Sprite2D" parent="BaseIKExample/TwoJointIK/MiddleJoint/EndJoint"]
 position = Vector2(9, 0)
