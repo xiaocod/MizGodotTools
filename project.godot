@@ -27,6 +27,7 @@ window/size/viewport_height=1200
 
 instanced="anything that needs to be deleted on scene change"
 serializable="anything that can be saved and loaded"
+player="Player character group name"
 
 [input]
 

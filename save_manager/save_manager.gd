@@ -1,9 +1,13 @@
 extends Node
 
-## Handles saving and loading data, must be set as a global
-## F1 and F5 are quicksave and quickload
-
+## Handles saving and loading data, must be set as a Global
+##
 ## Save path on windows is %APPDATA%/Godot/app_userdata/MizGodotTools/saved_games
+## Use a tool like https://jsonlint.com/ to format the json to be more readable for debugging
+## F1 and F5 are quicksave and quickload
+##
+## Designed with an 'Open World' style game in mind, as in you can return to levels after visiting them once
+## and changes will persist
 
 const NODE_PATH_KEY = "node_path" # used by non instances to specify their path in the scene
 const INSTANCE_ID_KEY = "instance_uid" # used by serializable instances to contain uid or resource path
