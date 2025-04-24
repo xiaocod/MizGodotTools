@@ -3,6 +3,8 @@ extends Node
 ## Handles saving and loading data, must be set as a global
 ## F1 and F5 are quicksave and quickload
 
+## Save path on windows is %APPDATA%/Godot/app_userdata/MizGodotTools/saved_games
+
 const NODE_PATH_KEY = "node_path" # used by non instances to specify their path in the scene
 const INSTANCE_ID_KEY = "instance_uid" # used by serializable instances to contain uid or resource path
 
@@ -43,13 +45,25 @@ func quicksave():
 func load_quicksave():
 	load_game_from_file(QUICKSAVE_PATH)
 
+func save_game_with_filename(save_name: String):
+	if save_name == "":
+		print_debug("INVALID SAVE FILE NAME")
+		return false
+	print_save_status("save file " + str(save_name))
+	save_game_to_file(SAVE_FILE_PATH_FORMAT % save_name)
+	return true
+
+func load_game_with_filename(save_name: String):
+	print_save_status("load file " + str(save_name))
+	load_game_from_file(SAVE_FILE_PATH_FORMAT % save_name)
+
 func save_game_to_file(file_path: String):
 	var game_save_data = get_game_save_data()
 	game_save_data.save_data_to_file(file_path)
 	record_last_saved_file_path(file_path)
 	game_saved.emit(file_path)
 
-func load_game_from_file(file_path: String, do_fade_out=false):
+func load_game_from_file(file_path: String, _do_fade_out=false): # TODO fadein/out
 	print_save_status("loading: " + file_path)
 	record_last_saved_file_path(file_path)
 	#if do_fade_out:
@@ -109,7 +123,7 @@ func get_game_save_data() -> GameSaveData:
 	
 	# scene path data
 	var current_scene_path = get_tree().current_scene.scene_file_path
-	game_save_data.scene_path = current_scene_path
+	game_save_data.last_active_level_scene_path = current_scene_path
 	
 	# player data
 	var player = get_tree().get_first_node_in_group("player")
@@ -142,11 +156,11 @@ func load_game_save_data(game_save_data: GameSaveData, loading_from_save: bool):
 	var current_scene_path = get_tree().current_scene.scene_file_path
 	if loading_from_save:
 		get_tree().call_group("instanced", "free")
-		if current_scene_path == game_save_data.scene_path:
+		if current_scene_path == game_save_data.last_active_level_scene_path:
 			get_tree().reload_current_scene()
 		else:
-			current_scene_path = game_save_data.scene_path
-			get_tree().change_scene_to_file(game_save_data.scene_path)
+			current_scene_path = game_save_data.last_active_level_scene_path
+			get_tree().change_scene_to_file(game_save_data.last_active_level_scene_path)
 		await get_tree().process_frame
 		await get_tree().process_frame
 		await get_tree().process_frame

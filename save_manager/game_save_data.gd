@@ -12,7 +12,7 @@ func get_nodes_save_data_for_scene_path(scene_key: String):
 
 func get_deleted_nodes_for_scene_path(scene_key: String) -> Array[String]:
 	if scene_key in all_levels_data:
-		return all_levels_data[scene_key].deleted_nodes
+		return all_levels_data[scene_key].deleted_node_paths
 	return [] as Array[String]
 
 func store_data_for_scene_path(scene_key: String, level_save_data: LevelSaveData):

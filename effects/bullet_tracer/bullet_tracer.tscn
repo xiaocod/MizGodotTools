@@ -53,7 +53,7 @@ _data = {
 &"fadeout": SubResource("Animation_wb5uf")
 }
 
-[node name="BulletTracer" type="Node2D"]
+[node name="BulletTracer" type="Node2D" groups=["instanced"]]
 z_index = 8
 script = ExtResource("1_2sgox")
 

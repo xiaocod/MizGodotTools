@@ -110,7 +110,7 @@ func load_save_data(save_data: Dictionary):
 		base_color = str_to_var(save_data.base_color)
 		modulate = base_color
 	if "global_transform" in save_data:
-		global_position = str_to_var(save_data.global_transform)
+		global_transform = str_to_var(save_data.global_transform)
 	
 	if has_node("SplatterSounds"):
 		get_node("SplatterSounds").queue_free()
