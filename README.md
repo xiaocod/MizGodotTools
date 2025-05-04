@@ -15,6 +15,7 @@ Under MIT license so feel free to use in your own games.
 
 #### Globals
 * SaveManager
+* LevelManager
 
 ### Example Scenes
 
