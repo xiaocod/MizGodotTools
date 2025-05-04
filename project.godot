@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SaveManager="*res://save_manager/save_manager.gd"
+LevelManager="*res://level_manager/level_manager.tscn"
 
 [display]
 

@@ -12,7 +12,7 @@ extends Node
 const NODE_PATH_KEY = "node_path" # used by non instances to specify their path in the scene
 const INSTANCE_ID_KEY = "instance_uid" # used by serializable instances to contain uid or resource path
 
-var verbose = true
+var verbose = false
 var game_loading = false
 
 const SAVE_FILE_DIRECTORY =  "user://saved_games/"
@@ -23,6 +23,8 @@ const LAST_SAVED_FILE = "user://last_played.save"
 
 signal game_saved(save_file_path: String)
 signal game_load_complete
+
+@onready var current_game_save_data = GameSaveData.new()
 
 func _ready():
 	DirAccess.make_dir_absolute(SAVE_FILE_DIRECTORY)
@@ -67,11 +69,11 @@ func save_game_to_file(file_path: String):
 	record_last_saved_file_path(file_path)
 	game_saved.emit(file_path)
 
-func load_game_from_file(file_path: String, _do_fade_out=false): # TODO fadein/out
+func load_game_from_file(file_path: String, _do_fade_out=false):
 	print_save_status("loading: " + file_path)
 	record_last_saved_file_path(file_path)
 	#if do_fade_out:
-		#await ScreenFader.fade_to_black()
+		#await ScreenFader.fade_to_black() #TODO
 	
 	get_tree().paused = false
 	game_loading = true
@@ -81,7 +83,7 @@ func load_game_from_file(file_path: String, _do_fade_out=false): # TODO fadein/o
 	else:
 		print("ERROR LOADING FILE %s" % file_path)
 	#if do_fade_out:
-		#ScreenFader.fade_to_clear()
+		#ScreenFader.fade_to_clear() #TODO
 	
 	# wait for new scene to load	
 	await get_tree().process_frame
@@ -103,27 +105,14 @@ func get_last_saved_file_path() -> String:
 		return ""
 	return save_path
 
-func get_all_saves_for_save_number(save_number : int):
-	var pattern_to_look_for = "save_file_%s" % save_number
-	var dir = DirAccess.open(SAVE_FILE_DIRECTORY)
-	var files = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if !dir.current_is_dir() and pattern_to_look_for in file_name:
-				files.append(SAVE_FILE_DIRECTORY + file_name)
-			file_name = dir.get_next()
-	files.sort_custom(sort_by_date_modified)
-	return files
-
 func sort_by_date_modified(file_path_a: String, file_path_b: String):
 	var file_a_time = FileAccess.get_modified_time(file_path_a)
 	var file_b_time = FileAccess.get_modified_time(file_path_b)
 	return file_a_time > file_b_time
 
 func get_game_save_data() -> GameSaveData:
-	var game_save_data = GameSaveData.new()
+	#var game_save_data = GameSaveData.new()
+	var game_save_data = current_game_save_data
 	
 	# scene path data
 	var current_scene_path = get_tree().current_scene.scene_file_path
@@ -131,7 +120,7 @@ func get_game_save_data() -> GameSaveData:
 	
 	# player data
 	var player = get_tree().get_first_node_in_group("player")
-	if player:
+	if player and player.has_method("get_save_data"):
 		game_save_data.player_data = player.get_save_data()
 	
 	# level data
@@ -155,6 +144,7 @@ func get_game_save_data() -> GameSaveData:
 func load_game_save_data(game_save_data: GameSaveData, loading_from_save: bool):
 	# world data
 	#LevelManager.show_loading_popup()
+	current_game_save_data = game_save_data
 	print_save_status("LOADING SAVE DATA")
 	
 	var current_scene_path = get_tree().current_scene.scene_file_path
@@ -171,7 +161,7 @@ func load_game_save_data(game_save_data: GameSaveData, loading_from_save: bool):
 		print_save_status("LOADED scene from save")
 	
 	var player = get_tree().get_first_node_in_group("player")
-	if player:
+	if player and player.has_method("load_save_data"):
 		player.load_save_data(game_save_data.player_data, loading_from_save)
 	print_save_status("PLAYER DATA LOADED")
 	
@@ -206,6 +196,9 @@ func load_game_save_data(game_save_data: GameSaveData, loading_from_save: bool):
 	print_save_status("LOADED SAVED NODES")
 	#LevelManager.hide_loading_popup()
 
+func reset_current_game_save_data():
+	current_game_save_data = GameSaveData.new()
+
 # track what non-instanced nodes were deleted (for example, an item picked up)
 var deleted_node_paths : Array[String]
 func add_deleted_node_path(node_path: String):
@@ -222,17 +215,6 @@ func get_save_file_info(save_file_path: String):
 	var date_string = Time.get_date_string_from_unix_time(time_last_played)
 	
 	return date_string + " " + time_string
-
-func get_save_file_type(save_file_path: String):
-	if "_start" in save_file_path:
-		# save_file_1_level_1_start.save
-		var level_num = save_file_path.get_slice("_", 5)
-		return tr("LEVEL_%s_START_SAVE") % level_num
-	if "_manual" in save_file_path:
-		return tr("MANUAL_SAVE")
-	if "_autosave" in save_file_path:
-		return tr("AUTOSAVE")
-	return "ERROR: Unknown Save Type"
 
 func print_save_status(text: String):
 	if verbose:

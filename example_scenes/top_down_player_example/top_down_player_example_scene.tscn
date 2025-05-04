@@ -1,41 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm8pfjkajwgno"]
+[gd_scene load_steps=4 format=3 uid="uid://cm8pfjkajwgno"]
 
-[ext_resource type="Texture2D" uid="uid://c485t74cvfska" path="res://effects/textures/white_circle.png" id="1_8p6uh"]
-[ext_resource type="Script" uid="uid://dufdfer22yehx" path="res://example_scenes/top_down_player_example/top_down_player.gd" id="1_nt6tu"]
-[ext_resource type="PackedScene" uid="uid://drgy5ywjdpjnl" path="res://characters_utility/top_down_character_mover/top_down_character_mover.tscn" id="2_veugp"]
-[ext_resource type="PackedScene" uid="uid://c2vvxd4ikbac6" path="res://input/top_down_input.tscn" id="3_veugp"]
+[ext_resource type="PackedScene" uid="uid://cv3xqa7eu5hq2" path="res://example_scenes/top_down_player_example/top_down_player.tscn" id="1_8p6uh"]
 [ext_resource type="Texture2D" uid="uid://c6b5ihc5jnyoh" path="res://effects/textures/white_sq.png" id="5_3sbmu"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1titp"]
-radius = 32.1403
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17rgx"]
 size = Vector2(64, 62)
 
 [node name="TopDownPlayerExampleScene" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("1_nt6tu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_1titp")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("1_8p6uh")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Player/Sprite2D"]
-position = Vector2(31, 0)
-scale = Vector2(0.78125, 0.3125)
-texture = ExtResource("1_8p6uh")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="TopDownCharacterMover" parent="Player" instance=ExtResource("2_veugp")]
-instantly_turn = true
-
-[node name="TopDownInput" parent="Player" instance=ExtResource("3_veugp")]
+[node name="Player" parent="." instance=ExtResource("1_8p6uh")]
 
 [node name="Obstacle" type="StaticBody2D" parent="."]
 position = Vector2(97, 108)

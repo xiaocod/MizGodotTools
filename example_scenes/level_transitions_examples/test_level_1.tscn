@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=4 uid="uid://b7078ccdpuvwr"]
+
+[ext_resource type="PackedScene" uid="uid://c1ojw03pvbsu7" path="res://level_manager/level_connections/level_connection.tscn" id="1_r5t5o"]
+[ext_resource type="PackedScene" uid="uid://cvgkea2olanl1" path="res://example_scenes/level_transitions_examples/base_level_template.tscn" id="1_soqte"]
+
+[node name="TestLevel1" instance=ExtResource("1_soqte")]
+
+[node name="LevelConnector" parent="." index="0" instance=ExtResource("1_r5t5o")]
+position = Vector2(456, 31)
+level_to_load = "test_level_2"
+connection_name = "1_to_2"
+
+[node name="Player" parent="." index="1"]
+position = Vector2(210, 54)
+
+[node name="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAD3/wIAAQABAAIAAAD4/wIAAQACAAMAAAD7/wMAAQAAAAEAAAD7/wQAAQAAAAEAAAD7/wUAAQABAAIAAAD8/wUAAQACAAMAAAD9/wUAAQACAAMAAAD+/wUAAQACAAMAAAD//wUAAQACAAMAAAAAAAUAAQACAAMAAAABAAUAAQACAAMAAAACAAUAAQADAAIAAAACAAQAAQAAAAEAAAACAAMAAQAAAAEAAAACAAIAAQABAAAAAAADAAIAAQACAAMAAAAEAAIAAQACAAMAAAAFAAIAAQACAAMAAAAGAAIAAQADAAMAAAAGAP7/AQADAAMAAAAFAP7/AQACAAMAAAAEAP7/AQACAAMAAAADAP7/AQACAAMAAAACAP7/AQACAAMAAAABAP7/AQABAAIAAAABAP3/AQADAAAAAAAAAP3/AQACAAMAAAD///3/AQACAAMAAAD+//3/AQACAAMAAAD9//3/AQACAAMAAAD8//3/AQABAAAAAAD8//7/AQADAAIAAAD7//7/AQACAAMAAAD6//7/AQACAAMAAAD5//7/AQACAAMAAAD4//7/AQACAAMAAAD3//7/AQABAAAAAAD5/wIAAQACAAMAAAD6/wIAAQACAAMAAAD7/wIAAQADAAAAAAD3/wEAAQAAAAEAAAD3/wAAAQAAAAEAAAD3////AQAAAAEAAAA=")

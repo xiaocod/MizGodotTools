@@ -17,6 +17,7 @@ func get_deleted_nodes_for_scene_path(scene_key: String) -> Array[String]:
 
 func store_data_for_scene_path(scene_key: String, level_save_data: LevelSaveData):
 	all_levels_data[scene_key] = level_save_data
+	#print_debug(all_levels_data)
 
 func get_all_levels_data_as_dict() -> Dictionary:
 	var all_levels_data_dict = {}

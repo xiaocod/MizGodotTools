@@ -48,7 +48,6 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
-[connection signal="died" from="HealthManager" to="." method="queue_free"]
 [connection signal="hitbox_hurt" from="HitBox" to="HealthManager" method="hurt"]
 
 [editable path="HitBox"]

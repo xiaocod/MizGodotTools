@@ -93,4 +93,5 @@ func load_save_data(save_data: Dictionary):
 		set_max_health(roundi(save_data.max_health))
 	if "health_regen_rate" in save_data:
 		set_health_regen_rate(roundi(save_data.health_regen_rate))
-	
+	if is_dead():
+		died.emit()
