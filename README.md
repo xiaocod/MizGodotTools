@@ -16,11 +16,32 @@ Under MIT license so feel free to use in your own games.
 #### Globals
 * SaveManager
 
-#### Example Scenes
-* drop_shadows_examples.tscn : Drop Shadows
-* pseudo_3d_objects_examples.tscn : Shows how I do Pseudo3D effects in Godot along with drop shadows
-* ik_examples.tscn : IK and Procedural Animations
-* weapon_damage_and_blood_examples.tscn : Guns, bullet effects, blood effects, health manager
-* save_load_scene_1.tscn and save_load_scene_2.tscn : Shows basic saving and loading of levels, F1 is quicksave and F5 is quickload
-* npc_vision_example.tscn : Shows how top down 2d npc vision manager works
-* top_down_player_example_scene.tscn : Top down movement system example with WASD or arrow keys movement + mouse look, or left joystick move right joystick turn
+### Example Scenes
+
+Drop Shadows : drop_shadows_examples.tscn
+
+https://github.com/user-attachments/assets/b0b99139-a2f5-48ea-b0bf-b047ccb45cd1
+
+Pseudo 3D + Drop Shadows : pseudo_3d_objects_examples.tscn
+
+https://github.com/user-attachments/assets/852767a9-23a7-434c-a659-314bb906535d
+
+IK and Procedural Animations : ik_examples.tscn 
+
+https://github.com/user-attachments/assets/be781604-7c68-4270-86a0-da8ca36baedb
+
+Guns, Bullet and Blood Effects, Health Manager : weapon_damage_and_blood_examples.tscn
+
+https://github.com/user-attachments/assets/da2299e8-d2f5-4b52-8e4d-3609472b6201
+
+NPC Vision : npc_vision_example.tscn
+
+https://github.com/user-attachments/assets/fd45ec0e-528b-4218-b9a9-bec17691b637
+
+Top Down Movement System : top_down_player_example_scene.tscn
+
+https://github.com/user-attachments/assets/c760555a-37f3-47e9-bbcb-f3ed50b859c8
+
+Save System : save_load_scene_1.tscn and save_load_scene_2.tscn
+
+https://github.com/user-attachments/assets/1b117209-6c5e-48bd-b7db-6821b4677d04
