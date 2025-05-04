@@ -32,4 +32,12 @@ autostart = true
 [node name="TestDummy" parent="." index="5" instance=ExtResource("4_vr0xl")]
 position = Vector2(476, 172)
 
+[node name="Label" type="Label" parent="." index="6"]
+offset_left = 115.0
+offset_top = -402.0
+offset_right = 418.0
+offset_bottom = -353.0
+text = "F1 quicksave
+F5 quickload"
+
 [connection signal="timeout" from="Rifle/Timer" to="Rifle" method="attack"]
