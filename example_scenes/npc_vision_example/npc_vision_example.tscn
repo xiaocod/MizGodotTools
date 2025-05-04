@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://c485t74cvfska" path="res://effects/textures/white_circle.png" id="1_li8pe"]
 [ext_resource type="Texture2D" uid="uid://c6b5ihc5jnyoh" path="res://effects/textures/white_sq.png" id="3_go3c2"]
 
+[sub_resource type="Animation" id="Animation_kggu6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_go3c2"]
 resource_name = "move"
 length = 6.0
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 166), Vector2(0, 0), Vector2(477, -65), Vector2(398, -302), Vector2(71, -454), Vector2(78, -680), Vector2(-40, -644), Vector2(-76, -494), Vector2(-138, -335)]
-}
-
-[sub_resource type="Animation" id="Animation_kggu6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kggu6"]

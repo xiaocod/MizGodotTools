@@ -83,5 +83,7 @@ Run Scene 1
 Quick Save
 Close Game
 Run Scene 2
-Quick Load"
+Quick Load
+
+F1 is quicksave and F5 is quickload"
 horizontal_alignment = 2

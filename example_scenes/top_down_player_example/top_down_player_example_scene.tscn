@@ -89,3 +89,12 @@ max_move_speed
 time_to_reach_max_speed
 time_to_stop_from_max_speed
 turn_speed (with 'instantly_turn' off)"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 166.0
+offset_top = -331.0
+offset_right = 518.0
+offset_bottom = -256.0
+text = "WASD or arrow keys movement + mouse look
+or 
+left joystick move right joystick turn"
