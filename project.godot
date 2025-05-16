@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="MizGodotTools"
+run/main_scene="uid://cqnokp4q87673"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -18,11 +19,6 @@ config/icon="res://icon.svg"
 
 SaveManager="*res://save_manager/save_manager.gd"
 LevelManager="*res://level_manager/level_manager.tscn"
-
-[display]
-
-window/size/viewport_width=1600
-window/size/viewport_height=1200
 
 [global_group]
 
